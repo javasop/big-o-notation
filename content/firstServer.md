@@ -9,6 +9,7 @@ server = http.createServer();
 
 ```
 
+
 ## Listen Server!
 
 The server should "listen" on a specific port for a connection.
@@ -43,5 +44,3 @@ server.on('connection',function(req,res){
 server.listen(1337, '127.0.0.1');
 
 ```
-
-

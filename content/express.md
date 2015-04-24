@@ -1,9 +1,9 @@
-## Let's create a Server
+## Express, an easy way to write APIs
 
-since nodejs is non-blocking. What are the things that blocks?
-
-* Reads/Writes on the Database
-* Calls to other web services
+* Simple framework
+* Easy way to handle routes
+* Uses Same Nodejs conventions
+* Middlewares
 
 
 ## Listen Server!

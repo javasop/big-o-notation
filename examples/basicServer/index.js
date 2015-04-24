@@ -6,12 +6,10 @@ server = http.createServer();
 server.on('request',function(req,res){
 
   req.on('data',function(data){
-
-    console.log(data)
-
+    console.log(data.toString())
   })
 
-  res.end("hi")
+  res.end("hi");
 
 })
 

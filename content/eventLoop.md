@@ -1,32 +1,38 @@
-## Let's create a Server
+## Nodejs is Non-Blocking
 
-since nodejs is non-blocking. What are the things that blocks?
+What are the things that block?
 
 * Reads/Writes on the Database
 * Calls to other web services
 
-
-## Listen Server!
-
-The server should "listen" on a specific port for a connection.
-
-```
-var http = require('http');
-
-server = http.createServer();
-
-server.listen(1337);
-console.log("Server is listening on 1337");
-
-```
-Now we have a running server
+* In other web frameworks, we create a separate thread for each request.
+* Nodejs uses only one thread!
 
 
-## Detect a connection event
+## Events
+    
+An event can be, for example:
 
-Nodejs is built around events. 
+* Incoming Connection from the client
+* Incoming Data from the client
+* Server close event.
+* event event event.
 
-Let's listen to the connection event on the server
+
+## Events (Continue)
+
+Let's look at our server, what are the events our server can have?
+
+* request
+* connection
+* close
+
+https://nodejs.org/api/http.html#http_event_request
+
+
+## Block Node
+
+The only way you can block your application is that you don't end the event callback.
 
 ```
 var http = require('http');
@@ -34,11 +40,13 @@ var http = require('http');
 server = http.createServer();
 
 server.on('connection',function(req,res){
-    res.end("hello world");
+
+    res.writeHead("hello");
+    res.write("hi there");
+    console.log("If you don't call res.end node will stop the whole application");
+    console.log("This is a very common mistake");
+    
 });
 
 server.listen(1337, '127.0.0.1');
-
 ```
-
-

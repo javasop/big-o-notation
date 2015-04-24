@@ -1,0 +1,8 @@
+{
+  "name": "modules",
+  "version": "1.0.0",
+  "description": "Module Example",
+  "dependencies": {
+    "express": "^4.12.3"
+  }
+}
