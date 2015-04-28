@@ -1,18 +1,54 @@
 var http = require('http');
-var reqConnection = require('./requestConnection');
+var express = require('express');
 
-var server = http.createServer();
 
-server.on('request',function(req,res){
+var app = express();
 
-  connection = reqConnection(req);
+app.get('/',function(req,res){
 
-  res.writeHead(200,{"content-type":"application/json"});
+    res.send("hello world")
 
-  res.end("hi");
+})
+app.post('/hello',function(req,res){
 
-});
+    res.send("hello there");
 
-server.listen(1337, '127.0.0.1');
-console.log("server is running on 1337");
+})
+
+
+//var cFormatter = require("./connectionFormatter")
+//
+//server = http.createServer();
+//
+//var count = 0;
+//
+//server.on('request',function(req,res){
+//
+//    var responseData;
+//    req.on('data',function(data){
+//        responseData  = data.toString();
+//        res.end("Hello "+responseData);
+//    })
+//
+//    res.writeHead(304);
+//    res.end("Hello ");
+//
+//
+//    //if(req.url != "/favicon.ico")
+//    //    count++;
+//
+//
+//})
+//server.on('connection',function(){
+//
+//    console.log("connection")
+//
+//})
+//server.on('close',function(){
+//
+//
+//})
+
+app.listen(1337);
+console.log("server is running on 1337")
 
