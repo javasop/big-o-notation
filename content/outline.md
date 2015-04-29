@@ -1,9 +1,3 @@
----
-title: Big-O Notation
-length: 180
-tags: algorithms, performance, analysis, data structures
----
-
 ## Learning Goals
 
 * Understand the basic concepts of Big-O Notation
@@ -13,30 +7,13 @@ tags: algorithms, performance, analysis, data structures
   programs on a practical level
 * Explore the performance characteristics of some common ruby operations
 
-### Other Topics
-
-* Big-O (upper bound) vs. Omega Notation (lower bound) vs. Theta Notation (upper and lower bound)
-
-## Structure
-
-* 10 - Warmup Discussion - introduce concept of Big-O
-* 15 - Example - Video consumption via Amazon delivery vs. downloads
-* 5 - Break
-* 25 - Exercise -- exploring Big-O in Ruby using Arrays and Hashes
-* 5 - Break
-* 25 - 
-
 
 ### Big-O Notation -- What is it?
 
-* Big-O as shorthand notation vs Big-O as catch-all term for algorithmic
-  analysis techniques
-* Asymptotic Analysis -- practice of analyzing algorithms' performance
-  as they approach some upper bound
-* How does asymptotic analysis allow us to simplify the process of
-  analyzing an algorithm's performance?
-* Why do we only care about performance of an algo as it reaches a large
-  upper bound?
+* Practice of analyzing an algorithm's performance.
+* We represent the complexity of our algorithms using the symbol N.
+* We always assume the worst case scenario.
+
 
 ### Big-O Notation -- real-world example
 
@@ -57,10 +34,11 @@ method?
 2 films * 2 days delivery time = 2 days
 ```
 
-Obviously, the download method is faster -- if Pierre's films are
-available online, he would be _fou_ not to access them this way.
 
-But what if Pierre is trying to watch _a lot_ of movies? Say, 10,000
+Obviously, the download method is faster -- if Pierre's films are
+available online.
+
+But what if Pierre is trying to watch a lot of movies? Say, 10,000
 movies.
 
 ```
@@ -68,11 +46,12 @@ movies.
 10000 films * 2 days delivery time = 2 days
 ```
 
-_ZUT!_ As we can see, once the number of films (`n`) grows above a
+As we can see, once the number of films (`n`) grows above a
 certain threshold, delivery overtakes downloading as the most efficient
-method of film acces.
+method of film access.
 
-__Visualizing Algorithmic Performance:__
+
+### Visualizing Algorithmic Performance:
 
 Can we find a way to describe, mathematically, what is happening in the
 example above? What would it look like if we plotted these
@@ -80,15 +59,14 @@ time-relationships on a simple graph?
 
 * Constant time (delivery) vs. Linear time (download)
 
-### Why care only about performance for large N?
+
+### Assume the worst case scenario
 
 As humans, we might be more likely to deal with 10 films rather than
 10000 films. But it turns out that when working with computers we often
 _do_ want to deal with the larger number.
 
 * How can we analyze an algorithm in terms of its "order of growth"?
-* Startup costs and "initial idiosyncrasies" -- need to discount small
-  constants
 * Initial times can be misleading (delivery vs. download) when compared
   with growth rates
 
@@ -100,10 +78,12 @@ we use as programmers which exhibit behaviors similar to the example
 above. Experiment with 2 -- looking up elements by value in an array and
 a hash
 
+
 * Introduction -- Ruby's Benchmark library
 * How do we find a value in an array? In a Hash?
 
-1. Open an IRB session and define 2 methods in it. We'll use these to
+
+* Open an IRB session and define 2 methods in it. We'll use these to
    generate sample data for our examination:
 
 ```ruby
@@ -116,7 +96,8 @@ def hash_of_length(n)
 end
 ```
 
-2. Create a hash of length 10 and an array of length 10 and experiment
+
+* Create a hash of length 10 and an array of length 10 and experiment
    with finding different elements. Use benchmark to measure the outputs
    of your results:
 
@@ -126,12 +107,40 @@ a = array_of_length(10)
 Benchmark.measure { h[10] }.to_s
 Benchmark.measure { a.find { |i| i == 10 } }.to_s
 ```
-
-3. These results are likely too small to make meaningful inferences
+* These results are likely too small to make meaningful inferences
    from. Try some larger examples, using lengths of `100`, `1000`,
-   `10_000`, `100_000`, and `1_000_000`. In each example find the last
+   `10,000`, `100,000`, and `1,000,000`. In each example find the last
    element of the list, and make note of the times you observe.
+      
+      
+      
+         
 
 
-__Discussion -- Order of Growth of reading from a Hash vs. reading from
-an Array__
+
+### Analyzing Order of Growth
+
+* Let's Plot the results in a graph. The x axis is the length of hash and array and the y is the time.
+* The order of growth for hashes vs arrays 
+* constant o(1) vs linear (N)
+
+
+### Popular Algorithms: Bubble Sort
+
+```
+class Array
+def bubblesort!
+length.times do |j| # iterates over the dataset
+for i in 1...(length - j) # nested iteration
+if self[i] < self[i - 1]
+self[i], self[i - 1] = self[i - 1], self[i]
+end
+end
+end
+self
+end
+end
+```
+* Let's look at the sort with array of length 2,3,4,5
+* For each array of length N we are running two loops each run for N times.
+* N * N = N squared => The complexity of this algorithm
