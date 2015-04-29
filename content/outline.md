@@ -6,6 +6,7 @@
 * Understand why we care about the algorithmic complexity of our
   programs on a practical level
 * Explore the performance characteristics of some common ruby operations
+* Look at Bubble Sort algorithm and how we analyze it's performance.
 
 
 ### Big-O Notation -- What is it?
